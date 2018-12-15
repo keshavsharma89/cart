@@ -16,6 +16,11 @@ use yii\helpers\Url;
 			</tr>
 		</thead>
 		<tbody>
+      <?php if(sizeof($Products) < 1 ){ ?>
+				<tr>
+					<td colspan="5"> Cart is empty </td>
+				</tr>
+      <?php }else{ ?>
       <?php foreach($Products as $Product){ ?>
   			<tr>
   				<td data-th="Product">
@@ -40,10 +45,12 @@ use yii\helpers\Url;
 					?>
   				<td data-th="Subtotal" class="text-center"><?php echo $subtotal;?></td>
   				<td class="actions" data-th="">
-  					<button class="btn btn-danger btn-sm"><a href="<?= URL::to(['/cart/removeproduct?pid='.$Product->ProductId]) ?>"><i class="glyphicon glyphicon-trash"></i></a></button>
+						<a href="<?= URL::to(['/cart/removeproduct?pid='.$Product->ProductId]) ?>">
+  						<button class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+						</a>
   				</td>
   			</tr>
-      <?php } ?>
+      <?php } } ?>
 		</tbody>
 		<tfoot>
 			<tr class="visible-xs">
